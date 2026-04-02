@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referral Submission Form</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
+fieldset { margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; background-color: #fff; }
+legend { font-weight: bold; padding: 0 10px; }
+label { display: block; margin-top: 10px; }
+input, textarea { width: 100%; padding: 6px; margin-top: 4px; box-sizing: border-box; }
+input[type="checkbox"], input[type="radio"] { width: auto; }
+.small-input { width: 50%; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; }
+.row > div { flex: 1 1 200px; }
+input[type="submit"] { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<h1>Referral Submission Form</h1>
+<form id="referralForm">
+
+<!-- Receiving Office -->
+<fieldset>
+<legend>Receiving Office</legend>
+<label>Agent Name: <input type="text" name="receiving_agent" required></label>
+<label>Firm Name: <input type="text" name="receiving_firm" required></label>
+<div class="row">
+<div><label>City: <input type="text" name="receiving_city" required></label></div>
+<div><label>State: <input type="text" name="receiving_state" required></label></div>
+<div><label>ZIP: <input type="text" name="receiving_zip" class="small-input" required></label></div>
+</div>
+<label>Phone: <input type="tel" name="receiving_phone"></label>
+</fieldset>
+
+<!-- Sending Office -->
+<fieldset>
+<legend>Sending Office</legend>
+<label>Agent Name: <input type="text" name="sending_agent" required></label>
+<label>Firm Name: <input type="text" name="sending_firm" required></label>
+<div class="row">
+<div><label>City: <input type="text" name="sending_city" required></label></div>
+<div><label>State: <input type="text" name="sending_state" required></label></div>
+<div><label>ZIP: <input type="text" name="sending_zip" class="small-input" required></label></div>
+</div>
+<label>Phone: <input type="tel" name="sending_phone"></label>
+</fieldset>
+
+<!-- Buyer Information -->
+<fieldset>
+<legend>Buyer Information</legend>
+<label>Name: <input type="text" name="buyer_name" required></label>
+<label>Address: <input type="text" name="buyer_address" required></label>
+<div class="row">
+<div><label>City: <input type="text" name="buyer_city" required></label></div>
+<div><label>State: <input type="text" name="buyer_state" required></label></div>
+<div><label>ZIP: <input type="text" name="buyer_zip" class="small-input" required></label></div>
+</div>
+<label>Business Phone: <input type="tel" name="buyer_business_phone"></label>
+<label>Home Phone: <input type="tel" name="buyer_home_phone"></label>
+<label>Preferred Location: <input type="text" name="buyer_pref_location"></label>
+<label>Home Size: <input type="text" name="buyer_home_size"></label>
+<label>Home Type: <input type="text" name="buyer_home_type"></label>
+<label>Price Range: <input type="text" name="buyer_price_range"></label>
+<div class="row">
+<div><label>Number of Adults: <input type="number" name="buyer_adults" min="0"></label></div>
+<div><label>Number of Children: <input type="number" name="buyer_children" min="0"></label></div>
+</div>
+<label>Children Ages: <input type="text" name="buyer_children_ages"></label>
+</fieldset>
+
+<!-- Referral Acceptance -->
+<fieldset>
+<legend>Realtor Acceptance of Referral</legend>
+<label>Date Contacted: <input type="date" name="date_contacted"></label>
+<label>First Appointment Date: <input type="date" name="first_appointment"></label>
+<label>Referral Fee (% of Gross Commission): <input type="number" step="0.01" name="referral_fee"></label>
+<div class="row">
+<div>
+<label>Receiving Sale Signature:</label>
+<input type="text" name="receiving_sale_signature">
+<label>Date: <input type="date" name="receiving_sale_signature_date"></label>
+</div>
+<div>
+<label>Receiving Broker Signature:</label>
+<input type="text" name="receiving_broker_signature">
+<label>Date: <input type="date" name="receiving_broker_signature_date"></label>
+</div>
+</div>
+</fieldset>
+
+<input type="submit" value="Submit Referral">
+</form>
+
+<script>
+document.getElementById('referralForm').addEventListener('submit', function(e) {
+e.preventDefault();
+const data = {
+receiving_office: {
+agent_name: document.querySelector('[name="receiving_agent"]').value,
+firm_name: document.querySelector('[name="receiving_firm"]').value,
+city: document.querySelector('[name="receiving_city"]').value,
+state: document.querySelector('[name="receiving_state"]').value,
+zip: document.querySelector('[name="receiving_zip"]').value,
+phone: document.querySelector('[name="receiving_phone"]').value
+},
+sending_office: {
+agent_name: document.querySelector('[name="sending_agent"]').value,
+firm_name: document.querySelector('[name="sending_firm"]').value,
+city: document.querySelector('[name="sending_city"]').value,
+state: document.querySelector('[name="sending_state"]').value,
+zip: document.querySelector('[name="sending_zip"]').value,
+phone: document.querySelector('[name="sending_phone"]').value
+},
+buyer: {
+name: document.querySelector('[name="buyer_name"]').value,
+address: document.querySelector('[name="buyer_address"]').value,
+city: document.querySelector('[name="buyer_city"]').value,
+state: document.querySelector('[name="buyer_state"]').value,
+zip: document.querySelector('[name="buyer_zip"]').value,
+business_phone: document.querySelector('[name="buyer_business_phone"]').value,
+home_phone: document.querySelector('[name="buyer_home_phone"]').value,
+preferred_location: document.querySelector('[name="buyer_pref_location"]').value,
+home_size: document.querySelector('[name="buyer_home_size"]').value,
+home_type: document.querySelector('[name="buyer_home_type"]').value,
+price_range: document.querySelector('[name="buyer_price_range"]').value,
+num_adults: parseInt(document.querySelector('[name="buyer_adults"]').value),
+num_children: parseInt(document.querySelector('[name="buyer_children"]').value),
+children_ages: document.querySelector('[name="buyer_children_ages"]').value
+},
+referral_acceptance: {
+date_contacted: document.querySelector('[name="date_contacted"]').value,
+first_appointment: document.querySelector('[name="first_appointment"]').value,
+referral_fee_percent: parseFloat(document.querySelector('[name="referral_fee"]').value),
+receiving_sale_signature: document.querySelector('[name="receiving_sale_signature"]:checked')?.value || 0,
+receiving_sale_signature_date: document.querySelector('[name="receiving_sale_signature_date"]').value,
+receiving_broker_signature: document.querySelector('[name="receiving_broker_signature"]:checked')?.value || 0,
+receiving_broker_signature_date: document.querySelector('[name="receiving_broker_signature_date"]').value
+}
+};
+fetch('submit_referral.php', {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify(data)
+})
+.then(res => res.json())
+.then(res => alert(res.message))
+.catch(err => console.error(err));
+});
+</script>
+
+</body>
+</html>
