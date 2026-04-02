@@ -44,5 +44,5 @@ Setup Instructions (Local Development with XAMPP & phpMyAdmin)
     receiving_broker_signature_date DATE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+then press "Go" on the bottom bar
 7. To run application: open browser and paste these links; to Submit Form: http://localhost/referral_project/form.html and to View Forms: http://localhost/referral_project/view_referrals.php
